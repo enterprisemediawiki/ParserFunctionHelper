@@ -1,0 +1,4 @@
+{
+	"parserfunctionhelper-name": "Parser Function Helper",
+	"parserfunctionhelper-desc": "Provides a simple interface for other extensions to create parser functions"
+}

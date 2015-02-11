@@ -1,0 +1,29 @@
+{
+	"name": "mediawiki/parser-function-helper",
+	"type": "mediawiki-extension",
+	"description": "Pushing stuff to other wikis",
+	"keywords": [
+		"MediaWiki",
+		"Wiki Farm"
+	],
+	"homepage": "https://github.com/jamesmontalvo3/ParserFunctionHelper",
+	"license": "GPL-2.0+",
+	"authors": [
+		{
+			"name": "James Montalvo",
+			"email": "jamesmontalvo3@gmail.com",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"irc": "irc://irc.freenode.net/mediawiki"
+	},
+	"require": {
+		"php": ">=5.3.0"
+	},
+	"autoload": {
+		"files" : [
+			"ParserFunctionHelper.php"
+		]
+	}
+}
