@@ -12,18 +12,18 @@ namespace ParserFunctionHelper;
 abstract class ParserFunctionHelper {
 
 	public $functionName;
-	public $unnamedParamDefaults;
-	public $namedParamDefaults;
+	public $unlabelledParamDefaults;
+	public $labelledParamDefaults;
 	public $params;
 	public $allowUserDefinedParams = false; // all named params must be specified in class unless set to true
 
 
-	public function __construct ( \Parser &$parser, $functionName, $unnamedParamDefaults, $namedParamDefaults ) {
+	public function __construct ( \Parser &$parser, $functionName, $unlabelledParamDefaults, $labelledParamDefaults ) {
 
 		$this->parser = $parser;
 		$this->functionName = $functionName;
-		$this->unnamedParamDefaults = $unnamedParamDefaults;
-		$this->namedParamDefaults = $namedParamDefaults;
+		$this->unlabelledParamDefaults = $unlabelledParamDefaults;
+		$this->labelledParamDefaults = $labelledParamDefaults;
 
 	}
 
@@ -50,9 +50,14 @@ abstract class ParserFunctionHelper {
 		$processedParams = array(); // reset this array if set to something
 
 		// param name stuff
-		$numUnnamedParams = count( $this->unnamedParamDefaults );
-		$unnamedParamNames = array_keys( $this->unnamedParamDefaults );
-		$namedParamNames = array_keys( $this->namedParamDefaults );
+		$numUnnamedParams = count( $this->unlabelledParamDefaults );
+		$unlabelledParamNames = array_keys( $this->unlabelledParamDefaults );
+		$namedParamNames = array_keys( $this->labelledParamDefaults );
+
+		for ( $i = 0; $i < $numUnnamedParams; $i++ ) {
+
+		}
+
 
 		// assign params - support unlabelled params, for backwards compatibility
 		foreach ( $userParams as $i => $param ) {
@@ -63,7 +68,8 @@ abstract class ParserFunctionHelper {
 			}
 
 			if ( $i < $numUnnamedParams ) {
-				$processedParams[ $unnamedParamNames[$i] ] = $param;
+				$unlabelledParamName = $unlabelledParamNames[$i];
+				$processedParams[ $unlabelledParamName ] = $param;
 				continue;
 			}
 
@@ -87,12 +93,20 @@ abstract class ParserFunctionHelper {
 		}
 
 		// if any unnamed params were not set, set them now with defaults
-		for ( $j = $i; $j < $numUnnamedParams; $j++ ) {
-			$processedParams[ $unnamedParamNames[$j] ] = $this->unnamedParamDefaults[ $unnamedParamNames[$j] ];
+		for ( $j = $i + 1; $j < $numUnnamedParams; $j++ ) {
+			$unlabelledParamName = $unlabelledParamNames[$j];
+			$processedParams[ $unlabelledParamName ] = $this->unlabelledParamDefaults[ $unlabelledParamName ];
 		}
 
+		foreach( $this->unlabelledParamDefaults as $name => $default ) {
+			if ( ! array_key_exists( $name, $processedParams ) ) {
+				$processedParams[ $name ] = $default;
+			}
+		}
+
+
 		// if any named params were not set, set them now with defaults
-		foreach( $this->namedParamDefaults as $name => $default ) {
+		foreach( $this->labelledParamDefaults as $name => $default ) {
 			if ( ! array_key_exists( $name, $processedParams ) ) {
 				$processedParams[ $name ] = $default;
 			}
