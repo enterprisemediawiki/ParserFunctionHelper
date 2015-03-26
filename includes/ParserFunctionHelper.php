@@ -27,7 +27,7 @@ abstract class ParserFunctionHelper {
 
 	}
 
-	static public function renderWrapper ( &$parser, $frame, $userParams ) {
+	/*static public function renderWrapper ( &$parser, $frame, $userParams ) {
 
 		// new instance of inheriting class (e.g. not this abstract class)
 		$pf = new self( $parser );
@@ -41,11 +41,20 @@ abstract class ParserFunctionHelper {
 		// return $parser->insertStripItem( $str, $parser->mStripState );
 
 		return $pf->render( $parser, $params );
-	}
+	}*/
 
 	abstract public function render( \Parser &$parser, $params );
 
-	function processParams ( $userParams ) {
+	public function paramPreProcess ( $userParams ) {
+
+		$processedParams = array_map( function( $param ) {
+			return trim( $this->frame->expand( $param ) );
+		}, $userParams );
+
+		return $processedParams;
+	}
+
+	public function processParams ( $userParams ) {
 
 		$processedParams = array(); // reset this array if set to something
 
@@ -61,7 +70,6 @@ abstract class ParserFunctionHelper {
 
 		// assign params - support unlabelled params, for backwards compatibility
 		foreach ( $userParams as $i => $param ) {
-			$param = trim( $this->frame->expand( $param ) );
 
 			if ( $param === '' ) {
 				continue; // skip blank parameters
@@ -134,6 +142,10 @@ abstract class ParserFunctionHelper {
 
 				$pf->frame = $frame;
 				// return $pf->processParams( $userParams );
+				
+				// this removes the 
+				$userParams = $pf->paramPreProcess( $userParams );
+
 				$processedParams = $pf->processParams( $userParams );
 
 				// hack to remove newline from beginning of output, thanks to

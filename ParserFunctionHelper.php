@@ -33,4 +33,9 @@ $GLOBALS['wgExtensionCredits']['other'][] = array(
 $GLOBALS['wgMessagesDirs']['ParserFunctionHelper'] = __DIR__ . '/i18n';
 
 // Autoload
-$GLOBALS['wgAutoloadClasses']['ParserFunctionHelper\ParserFunctionHelper'] = __DIR__ . '/ParserFunctionHelper.class.php';
+$GLOBALS['wgAutoloadClasses']['ParserFunctionHelper\Setup'] = __DIR__ . '/includes/Setup.php';
+$GLOBALS['wgAutoloadClasses']['ParserFunctionHelper\ParserFunctionHelper'] = __DIR__ . '/includes/ParserFunctionHelper.php';
+$GLOBALS['wgAutoloadClasses']['ParserFunctionHelper\DummyFunction'] = __DIR__ . '/tests/dummies/DummyFunction.php';
+
+// Unit testing
+$GLOBALS['wgHooks']['UnitTestsList'][] = 'ParserFunctionHelper\Setup::onUnitTestsList';

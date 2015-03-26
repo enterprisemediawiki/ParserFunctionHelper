@@ -1,10 +1,9 @@
 {
 	"name": "mediawiki/parser-function-helper",
 	"type": "mediawiki-extension",
-	"description": "Pushing stuff to other wikis",
+	"description": "Very lightweight abstract class to help creating MediaWiki parser functions",
 	"keywords": [
-		"MediaWiki",
-		"Wiki Farm"
+		"MediaWiki"
 	],
 	"homepage": "https://github.com/jamesmontalvo3/ParserFunctionHelper",
 	"license": "GPL-2.0+",
