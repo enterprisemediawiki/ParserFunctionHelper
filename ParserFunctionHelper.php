@@ -37,5 +37,13 @@ $GLOBALS['wgAutoloadClasses']['ParserFunctionHelper\Setup'] = __DIR__ . '/includ
 $GLOBALS['wgAutoloadClasses']['ParserFunctionHelper\ParserFunctionHelper'] = __DIR__ . '/includes/ParserFunctionHelper.php';
 $GLOBALS['wgAutoloadClasses']['ParserFunctionHelper\DummyFunction'] = __DIR__ . '/tests/dummies/DummyFunction.php';
 
+// Setup parser functions
+$GLOBALS['wgHooks']['ParserFirstCallInit'][] = 'ParserFunctionHelper\Setup::setupParserFunctions';
+
+
 // Unit testing
 $GLOBALS['wgHooks']['UnitTestsList'][] = 'ParserFunctionHelper\Setup::onUnitTestsList';
+
+// initialize as array
+$egParserFunctionHelperClasses = array();
+
