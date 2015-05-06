@@ -11,7 +11,8 @@ Installation
 ```php
 require_once "$IP/extensions/ParserFunctionHelper/ParserFunctionHelper.php";
 ```
-3. Develop your own extension that uses ParserFunctionHelper (ParserFunctionHelper doesn't do anything on it's own).
+
+Once installed, develop your own extension that uses ParserFunctionHelper (ParserFunctionHelper doesn't do anything on it's own).
 
 Creating your own extension
 ---------------------------
