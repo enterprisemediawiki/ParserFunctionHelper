@@ -1,0 +1,31 @@
+{
+	"name": "Parser Function Helper",
+	"version": "1.0.0",
+	"author": "[https://www.mediawiki.org/wiki/User:Jamesmontalvo3 James Montalvo]",
+	"url": "http://github.com/jamesmontalvo3/ParserFunctionHelper.git",
+	"descriptionmsg": "parserfunctionhelper-desc",
+	"namemsg": "parserfunctionhelper-name",
+	"type": "other",
+	"MessagesDirs": {
+		"ParserFunctionHelper": [
+			"i18n"
+		]
+	},
+	"AutoloadClasses": {
+		"ParserFunctionHelper\\Setup": "includes/Setup.php",
+		"ParserFunctionHelper\\ParserFunctionHelper": "includes/ParserFunctionHelper.php",
+		"ParserFunctionHelper\\DummyFunction": "tests/dummies/DummyFunction.php"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": [
+			"ParserFunctionHelper\\Setup::setupParserFunctions"
+		],
+		"UnitTestsList": [
+			"ParserFunctionHelper\\Setup::onUnitTestsList"
+		]
+	},
+	"config": {
+		"_prefix": "eg",
+		"ParserFunctionHelperClasses": []
+	}
+}
