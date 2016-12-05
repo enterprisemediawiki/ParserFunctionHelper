@@ -19,12 +19,16 @@ Generate a new extension with script
 
 To generate a new parser function extension, run the following:
 
-```bash
+```
 cd /path/to/your/mediawiki/extensions/ParserFunctionHelper
 php createParserFunction.php --ext-name=MyNewExtension --function=my-parser-function --your-name="Your Full Name"
 ```
 
-A new extension will be generated at `/path/to/your/mediawiki/extensions/MyNewExtension
+A new extension will be generated at `/path/to/your/mediawiki/extensions/MyNewExtension`
+
+Edit `/path/to/your/mediawiki/extensions/MyNewExtension/includes/<YourExtensionName>.php` to do what you want.
+
+Then add your new extensions to `LocalSettings.php` with `wfLoadExtension('YourExtensionName');`.
 
 Creating your own extension (old instructions)
 ----------------------------------------------
