@@ -1,0 +1,4 @@
+{
+	"{{lowercase-nospace-extension-name}}-name": "{{extension-name}}",
+	"{{lowercase-nospace-extension-name}}-desc": "A description of your extension."
+}

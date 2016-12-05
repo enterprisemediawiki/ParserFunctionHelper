@@ -9,15 +9,33 @@ Installation
 1. Download this extension and put the "ParserFunctionHelper" directory into your MediaWiki "extensions" directory.
 2. Add the following code at the bottom of your LocalSettings.php:
 ```php
-require_once "$IP/extensions/ParserFunctionHelper/ParserFunctionHelper.php";
+wfLoadExtension('ParserFunctionHelper');
 ```
 
 Once installed, develop your own extension that uses ParserFunctionHelper (ParserFunctionHelper doesn't do anything on it's own).
 
-Creating your own extension
----------------------------
+Generate a new extension with script
+------------------------------------
 
-1. Copy the BasicParserFunction extension code from https://github.com/enterprisemediawiki/BasicParserFunction and put the files in your wiki's extension directory. 
+To generate a new parser function extension, run the following:
+
+```
+cd /path/to/your/mediawiki/extensions/ParserFunctionHelper
+php createParserFunction.php --ext-name=MyNewExtension --function=my-parser-function --your-name="Your Full Name"
+```
+
+A new extension will be generated at `/path/to/your/mediawiki/extensions/MyNewExtension`
+
+Edit `/path/to/your/mediawiki/extensions/MyNewExtension/includes/<YourExtensionName>.php` to do what you want.
+
+Then add your new extensions to `LocalSettings.php` with `wfLoadExtension('YourExtensionName');`.
+
+Creating your own extension (old instructions)
+----------------------------------------------
+
+Below are old instructions. I haven't had time to figure out what's still applicable.
+
+1. Copy the BasicParserFunction extension code from https://github.com/enterprisemediawiki/BasicParserFunction and put the files in your wiki's extension directory.
 2. Rename your new BasicParserFunction directory to whatever you want your extension to be called. Also, throughout the extension the name "BasicParserFunction" is used in many places. You'll want to rename these as well. You can skip this step initially if you are just learning and don't mind leaving your extension called "BasicParserFunction".
 3. View the 6 files in your extension (this tutorial assumes you kept it called "BasicParserFunction"):
   1. BasicParserFunction.php: The "entry point" for your extension, where everything is setup for MediaWiki

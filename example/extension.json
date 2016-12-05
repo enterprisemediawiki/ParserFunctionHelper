@@ -1,0 +1,21 @@
+{
+	"name": "{{extension-name}}",
+	"version": "0.1.0",
+	"author": "{{your-name}}",
+	"url": "http://www.mediawiki.org/wiki/Extension:{{nospace-extension-name}}",
+	"descriptionmsg": "{{lowercase-nospace-extension-name}}-desc",
+	"type": "parserhook",
+	"ExtensionMessagesFiles": {
+		"{{nospace-extension-name}}Magic": "Magic.php"
+	},
+	"AutoloadClasses": {
+		"{{nospace-extension-name}}\\Setup": "includes/Setup.php",
+		"{{parser-function-name}}": "includes/{{parser-function-name}}.php"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": [
+			"{{nospace-extension-name}}\\Setup::setupParserFunctions"
+		]
+	},
+	"manifest_version": 1
+}
