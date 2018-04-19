@@ -27,5 +27,6 @@
 	"config": {
 		"_prefix": "eg",
 		"ParserFunctionHelperClasses": []
-	}
+	},
+	"manifest_version": 1
 }
